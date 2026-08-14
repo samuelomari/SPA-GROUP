@@ -109,3 +109,127 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Layout & Navigation */
+.container {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+}
+.brand {
+  font-weight: 600;
+  color: var(--text-h);
+}
+.nav {
+  display: flex;
+  gap: 12px;
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.nav-link.active {
+  color: var(--text-h);
+  background: var(--accent-bg);
+}
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+}
+.hamburger {
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  position: relative;
+}
+.hamburger::after,
+.hamburger::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--text);
+}
+.hamburger::before {
+  top: -7px;
+}
+.hamburger::after {
+  top: 7px;
+}
+
+.main-content {
+  padding: 32px 0;
+  flex: 1 1 auto;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+}
+
+/* Home page */
+.home-page .hero-section {
+  text-align: center;
+  padding: 48px 0 24px;
+}
+.home-page .lead {
+  max-width: 720px;
+  margin: 12px auto 20px;
+  color: var(--text);
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.btn.primary {
+  background: var(--accent);
+  color: white;
+}
+.btn.outline {
+  border: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 32px 0 64px;
+}
+.feature {
+  background: var(--code-bg);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .nav { display: none; }
+  .nav.open { display: flex; flex-direction: column; gap: 8px; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); padding: 12px 20px; }
+  .nav-toggle { display: block; }
+  .features-grid { grid-template-columns: 1fr; }
+  .home-page .hero-section { padding: 28px 0; }
+}
