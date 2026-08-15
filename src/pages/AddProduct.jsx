@@ -4,12 +4,9 @@ export default function AddProduct() {
   const [products, setProducts] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
-    name: "",
-    roastLevel: "Light",
+   name: "",
     price: "",
-    imageUrl: "",
     description: "",
-    isAvailable: true,
   });
 
   const fetchProducts = async () => {
@@ -27,21 +24,18 @@ export default function AddProduct() {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
   const resetForm = () => {
     setFormData({
       name: "",
-      roastLevel: "Light",
       price: "",
-      imageUrl: "",
       description: "",
-      isAvailable: true,
     });
     setEditingId(null);
   };
@@ -57,7 +51,7 @@ export default function AddProduct() {
     const url = editingId
       ? `http://localhost:3000/products/${editingId}`
       : "http://localhost:3000/products";
-    const method = editingId ? "PUT" : "POST";
+    const method = editingId ? "PATCH" : "POST";
 
     fetch(url, {
       method,
@@ -84,6 +78,8 @@ export default function AddProduct() {
   };
 
   const handleDelete = (id) => {
+    if (!window.confirm("Are you sure you want to delete this coffee item?")) return;
+
     fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" })
       .then((res) => {
         if (res.ok) {
@@ -107,11 +103,6 @@ export default function AddProduct() {
           placeholder="Name"
           required
         />
-        <select name="roastLevel" value={formData.roastLevel} onChange={handleChange} required>
-          <option value="Light">Light</option>
-          <option value="Medium">Medium</option>
-          <option value="Dark">Dark</option>
-        </select>
         <input
           type="number"
           step="0.01"
@@ -121,13 +112,6 @@ export default function AddProduct() {
           placeholder="Price"
           required
         />
-        <input
-          type="url"
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleChange}
-          placeholder="Image URL"
-        />
         <textarea
           name="description"
           value={formData.description}
@@ -135,15 +119,6 @@ export default function AddProduct() {
           placeholder="Description"
           required
         />
-        <label>
-          <input
-            type="checkbox"
-            name="isAvailable"
-            checked={formData.isAvailable || false}
-            onChange={handleChange}
-          />
-          Available
-        </label>
         <button type="submit">{editingId ? "Update" : "Add"}</button>
         {editingId && (
           <button type="button" onClick={resetForm}>
@@ -154,7 +129,7 @@ export default function AddProduct() {
 
       <h3>Manage Coffee</h3>
       {products.map((item) => (
-        <div key={item.id} style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+        <div key={item.id} style={{ display: "flex", gap: "10px", marginBottom: "10px", alignItems: "center" }}>
           <span>
             <strong>{item.name}</strong> - ${item.price}
           </span>
@@ -162,7 +137,11 @@ export default function AddProduct() {
             type="button"
             onClick={() => {
               setEditingId(item.id);
-              setFormData(item);
+              setFormData({
+                name: item.name || "",
+                price: item.price || "",
+                description: item.description || "",
+              });
             }}
           >
             Edit
@@ -175,9 +154,3 @@ export default function AddProduct() {
     </div>
   );
 }
-   
-        
-        
-    
-
-            
