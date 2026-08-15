@@ -1,0 +1,48 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Ethiopian Yirgacheffe",
+            "price": 10.99,
+            "description": "Floral notes of jasmine, bergamot, and bright citrus acidity."
+        },
+        {
+            "id": 2,
+            "name": "Colombian Supremo",
+            "price": 19.99,
+            "description": "Smooth and balanced with chocolate, caramel, and a hint of fruit."
+        },
+        {
+            "id": 3,
+            "name": "Dark Roast Espresso Bland",
+            "price": 5.99,
+            "description": "Bold, full-bodied with a notes of dark chocolate and smoky sweetness ."    
+        },
+        {
+            "id": 4,
+            "name": "French Vanilla Coffee",
+            "price": 5.99,
+            "description": "Rich, creamy with a smooth vanilla flavor and a hint of caramel."
+        },
+   {
+       "id": 5,
+       "name": "Hazelnut Coffee",   
+       "price": 6.99,
+       "description": "Nutty, sweet with a smooth hazelnut flavor and a hint of chocolate."
+   } ,
+
+    {
+         "id": 6,
+         "name": "Caramel Macchiato",
+         "price": 7.99,
+         "description": "Sweet, creamy with a rich caramel flavor and a hint of espresso."          
+    } ,
+
+    {
+        "id": 7,
+        "name": "Mocha Latte",
+        "price": 8.99,
+        "description": "Chocolatey, creamy with a rich mocha flavor and a hint of espresso."
+    }
+    ]
+}
