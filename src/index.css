@@ -331,3 +331,58 @@ p  { margin: 0; }
   .home-page .hero-section { padding: 40px 16px 24px; }
   .main-content    { padding: 24px 16px; }
 }
+
+/* ── Auth pages ── */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+}
+.auth-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.auth-card h1 { margin-bottom: 6px; font-size: 1.8rem; }
+.auth-card .product-form { text-align: left; margin-top: 24px; }
+.auth-card .btn-primary { width: 100%; justify-content: center; }
+.auth-error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: .9rem;
+  margin-top: 12px;
+}
+.auth-footer {
+  margin-top: 20px;
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+.auth-footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.auth-footer a:hover { text-decoration: underline; }
+
+/* ── Navbar user area ── */
+.nav-inner { position: relative; }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-user  { display: flex; align-items: center; gap: 10px; }
+.nav-username { color: rgba(255,255,255,.85); font-size: .9rem; }
+.btn-logout {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+.btn-logout:hover { background: rgba(255,255,255,.25); }

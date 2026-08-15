@@ -14,9 +14,9 @@
     },
     {
       "id": "3",
-      "name": "Dark Roast Espresso Bland",
+      "name": "Dark Roast Espresso Blend",
       "price": 5.99,
-      "description": "Bold, full-bodied with a notes of dark chocolate and smoky sweetness ."
+      "description": "Bold, full-bodied with notes of dark chocolate and smoky sweetness."
     },
     {
       "id": "4",
@@ -42,6 +42,15 @@
       "price": 8.99,
       "description": "Chocolatey, creamy with a rich mocha flavor and a hint of espresso."
     }
-  ]
- 
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@coffee.com",
+      "password": "admin123",
+      "role": "admin"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
