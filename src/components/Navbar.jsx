@@ -7,7 +7,7 @@ export default function Navbar() {
 	return (
 		<header className="site-header">
 			<div className="container nav-inner">
-				<div className="brand">Admin Portal</div>
+				<div className="brand">☕ Coffee Menu</div>
 				<nav className={`nav ${open ? 'open' : ''}`} aria-label="Main navigation">
 					<NavLink to="/" end className="nav-link">
 						Home

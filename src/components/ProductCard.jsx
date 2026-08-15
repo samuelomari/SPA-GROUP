@@ -1,33 +1,20 @@
-import React from "react";
-
-export default function ProductCard({ product, onDelete }) {
+export default function ProductCard({ product, onDelete, onEdit }) {
   const handleDelete = () => {
-    if (!window.confirm(`Are you sure you want to delete ${product.name}?`)) return;
-
-    fetch(`http://localhost:3000/products/${product.id}`, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (res.ok) {
-          onDelete(product.id);
-        } else {
-          alert("Failed to delete product.");
-        }
-      })
-      .catch((err) => console.error("Error deleting product:", err));
-  };
+    if (!window.confirm(`Delete "${product.name}"?`)) return
+    onDelete(product.id)
+  }
 
   return (
     <div className="product-card">
-      <div className="product-details">
+      <div className="card-body">
         <h3>{product.name}</h3>
-        <p className="price">${Number.parseFloat(product.price || 0).toFixed(2)}</p>
+        <p className="price">${parseFloat(product.price || 0).toFixed(2)}</p>
         <p className="description">{product.description}</p>
-        
-        <button type="button" onClick={handleDelete} className="delete-button">
-          Delete
-        </button>
+      </div>
+      <div className="card-actions">
+        <button type="button" className="btn-edit" onClick={() => onEdit(product)}>Edit</button>
+        <button type="button" className="btn-delete" onClick={handleDelete}>Delete</button>
       </div>
     </div>
-  );
+  )
 }

@@ -1,56 +1,50 @@
-import React, { useState, useEffect } from "react";
-import ProductCard from "../components/ProductCard";
+import { useState } from 'react'
+import { useProducts } from '../hooks/useProducts'
+import ProductCard from '../components/ProductCard'
+import SearchBar from '../components/SearchBar'
+import ProductForm from '../components/ProductForm'
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { products, loading, error, update, remove } = useProducts()
+  const [query, setQuery] = useState('')
+  const [editing, setEditing] = useState(null)
 
-  useEffect(() => {
-    fetch("http://localhost:3000/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, []);
+  if (loading) return <div className="status-msg">Loading coffees…</div>
+  if (error) return <div className="status-msg error">Error: {error}</div>
 
-  const handleDeleteProduct = (id) => {
-    setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== id)
-    );
-  };
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(query.toLowerCase())
+  )
 
-  if (loading) return <div className="loading">Loading Coffee Menu...</div>;
-  if (error) return <div className="error-message">Error: {error}</div>;
+  const handleEdit = async (data) => {
+    await update(editing.id, data)
+    setEditing(null)
+  }
 
   return (
     <div className="products-page">
-      <h1>Coffee Menu</h1>
-      {products.length === 0 ? (
-        <p>No products available.</p>
-      ) : (
-        <div className="product-grid">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onDelete={handleDeleteProduct}
-            />
-          ))}
+      <h1>☕ Coffee Menu</h1>
+      <SearchBar value={query} onChange={setQuery} />
+
+      {editing && (
+        <div className="edit-overlay">
+          <div className="edit-modal">
+            <h2>Edit Coffee</h2>
+            <ProductForm initial={editing} onSubmit={handleEdit} onCancel={() => setEditing(null)} />
+          </div>
         </div>
       )}
+
+      {filtered.length === 0
+        ? <p className="empty-msg">No coffees found.</p>
+        : (
+          <div className="product-grid">
+            {filtered.map(p => (
+              <ProductCard key={p.id} product={p} onDelete={remove} onEdit={setEditing} />
+            ))}
+          </div>
+        )
+      }
     </div>
-  );
+  )
 }
-
-
