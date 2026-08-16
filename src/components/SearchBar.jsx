@@ -1,14 +1,16 @@
-function SearchBar({text,settext})
- {
-  return(
-    <input
-      value={text}
-      onChange={function(event) 
-        {
-        settext(event.target.value)
-        }}
-        placeholder="search for the name of the product here"
-    />
+export default function SearchBar({ text, settext }) {
+  return (
+    <div className="search-bar">
+      <span className="search-icon">🔍</span>
+      <input
+        type="search"
+        value={text}
+        onChange={e => settext(e.target.value)}
+        placeholder="Search for a coffee..."
+      />
+      {text && (
+        <button className="search-clear" onClick={() => settext('')} type="button">✕</button>
+      )}
+    </div>
   )
- }
-export default SearchBar
+}
